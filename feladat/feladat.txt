@@ -1,0 +1,10 @@
+A csatolt nevnapok.html fájl névnapokat tartalmaz dátumokkal együtt.
+Php scripttel dolgozzd fel a tartalmát, töltsd fel a névnapokat egy mysql adatbázisba!
+Használj a feldolgozáshoz reguláris kifejezéseket is!
+
+A létrehozott adatbázis fölé írj egy kicsi, minimális REST api-t!
+Tartalmazzon egy végpontot ahol le lehet kérdezni a névnapokat egy adott dátumra (év-hónap-nap).
+
+A kész munkának tartalmaznia kell:
+A rendszer init scriptjeit-mysql-jeit, amivel nulláról fel lehet építeni a rendszert és adatbázist.
+A névnapokat ne csatold dump-ként! Az általad írt scripttel és a csatolt html fájllal lehessen feltölteni őket.
