@@ -26,6 +26,10 @@ $router->get('nameday/{year}-{month}-{day}', function (int $year, int $month, in
     return json_encode($rows);
 });
 
-$response = $router->dispatch($request);
+try {
+    $response = $router->dispatch($request);
+} catch (\Exception $e) {
+    $response = new Response("", 412);
+}
 
 $response->send();

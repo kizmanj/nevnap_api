@@ -32,10 +32,10 @@ class Import extends Command {
 		}
 
 		echo "Loading file" . $filename . PHP_EOL;
-		$fileRows = explode("\n", file_get_contents($filename));
+		$fileHandle = fopen($filename, "r");
 
 		$data = [];
-		foreach ($fileRows as $row) {
+		while ($row = fgets($fileHandle)) {
 			if (preg_match('/^([\w]+)[\s]+([0-9,\.\*]+)$/mu', trim($row), $matches)) {
 				$dates = explode(',', $matches[2]);
 				foreach ($dates as $date) {
@@ -44,12 +44,14 @@ class Import extends Command {
 						"month" => intval($dateParts[0]),
 						"day" => intval($dateParts[1]),
 						"name" => $matches[1],
-						"primary" => intval($dateParts[2]) === "*"
+						"primary" => trim($dateParts[2]) === "*"
 					);
 				}
 				
 			}
 		}
+		fclose($fileHandle);
+
 		echo "Found " . count($data) . " entries. Inserting..." . PHP_EOL;
 
 		DB::beginTransaction();
