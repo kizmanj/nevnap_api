@@ -44,8 +44,8 @@ class Import extends Command {
 						"month" => intval($dateParts[0]),
 						"day" => intval($dateParts[1]),
 						"name" => $matches[1],
-						"primary" => trim($dateParts[2]) === "*"
-					);
+						"primary" => (isset($dateParts[2]) && trim($dateParts[2]) === "*") ? true : false
+                    );
 				}
 				
 			}
