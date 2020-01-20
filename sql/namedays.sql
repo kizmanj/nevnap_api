@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS `namedays` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `namedays`
- ADD KEY `month` (`month`), ADD KEY `day` (`day`);
+ ADD KEY `date` (`month`,`day`);

@@ -20,5 +20,5 @@ $capsule->bootEloquent();
 // Ha még nem létezik a tábla autómatikusan létrehozzuk
 $schema = DB::schema();
 if (!$schema->hasTable("namedays")) {
-	DB::statement(file_get_contents($serverRoot . '/sql/namedays.sql'));
+	DB::unprepared(file_get_contents($serverRoot . '/sql/namedays.sql'));
 }

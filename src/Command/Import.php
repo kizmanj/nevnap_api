@@ -56,14 +56,17 @@ class Import extends Command {
 
 		DB::beginTransaction();
 
-		DB::table('namedays')->delete();
+		try {
+            DB::table('namedays')->delete();
 
-		foreach ($data as $key => $value) {
-			$model = new NameDay($value);
-			$model->save();
-		}
-
-		DB::commit();
+            foreach ($data as $key => $value) {
+                $model = new NameDay($value);
+                $model->save();
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+		    DB::rollback();
+        }
 
 		echo "Done" . PHP_EOL;
 	}
